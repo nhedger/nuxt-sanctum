@@ -1,0 +1,8 @@
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": ["config:base", "schedule:weekly"],
+	"ignorePresets": [":semanticPrefixFixDepsChoreOthers"],
+	"labels": ["dependencies"],
+	"rangeStrategy": "pin",
+	"semanticCommitType": "deps"
+}

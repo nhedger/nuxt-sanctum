@@ -1,0 +1,42 @@
+name: Integrate
+
+on:
+  push:
+    tags-ignore: ["*"]
+  pull_request:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  coding-standards:
+    name: Coding Standards
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up
+        uses: ./.github/actions/setup
+      - name: Run Rome
+        run: pnpm exec biome ci .
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up
+        uses: ./.github/actions/setup
+      - name: Build
+        run: pnpm build
+
+  # test:
+  #   name: Test
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
+  #     - name: Set up
+  #       uses: ./.github/actions/setup
+  #     - name: Run Vitest
+  #       run: pnpm test

@@ -1,0 +1,37 @@
+name: Publish
+
+env:
+  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+      tag_name:
+        required: true
+        type: string
+
+jobs:
+  publish:
+    name: Publish to NPM
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up
+        uses: ./.github/actions/setup
+      - name: Build
+        run: pnpm build
+      - name: Set publish config
+        run: pnpm config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish
+        run: pnpm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
