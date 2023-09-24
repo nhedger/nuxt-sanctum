@@ -22,6 +22,7 @@ jobs:
           package-name: "@hedger/nuxt-sanctum"
           pull-request-header: "Upcoming release"
           pull-request-title-pattern: "chore: release${component} ${version}"
+          changelog-notes-type: "github"
     outputs:
       tag_name: ${{ steps.release.outputs.tag_name }}
       release_created: ${{ steps.release.outputs.release_created }}
