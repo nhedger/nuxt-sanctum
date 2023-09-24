@@ -1,0 +1,40 @@
+name: Release
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  integrate:
+    name: Integrate
+    uses: ./.github/workflows/integrate.yaml
+
+  release:
+    name: Release
+    needs: ["integrate"]
+    runs-on: ubuntu-latest
+    steps:
+      - id: release
+        name: Run release-please
+        uses: google-github-actions/release-please-action@v3.7.11
+        with:
+          release-type: node
+          package-name: "@hedger/nuxt-sanctum"
+          pull-request-header: "Upcoming release"
+          pull-request-title-pattern: "chore: release${component} ${version}"
+    outputs:
+      tag_name: ${{ steps.release.outputs.tag_name }}
+      release_created: ${{ steps.release.outputs.release_created }}
+      version:
+        "${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor
+        }}.${{ steps.release.outputs.patch }}"
+
+  publish:
+    name: Publish
+    if: ${{ needs.release.outputs.release_created == 'true' }}
+    needs: ["release"]
+    uses: ./.github/workflows/publish.yaml
+    secrets: inherit
+    with:
+      tag_name: ${{ needs.release.outputs.tag_name }}
+      version: ${{ needs.release.outputs.version }}
