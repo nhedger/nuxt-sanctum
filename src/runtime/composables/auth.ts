@@ -1,16 +1,16 @@
 import {
 	useCookie,
-	useNuxtApp,
 	useRequestHeaders,
 	useRouter,
 	useRuntimeConfig,
 	useState,
 } from "#imports";
 import { ofetch } from "ofetch";
+import { parse, splitCookiesString } from "set-cookie-parser-es";
 
 export const useAuth = () => {
 	const config = useRuntimeConfig().public.sanctum;
-	const csrfToken = useCookie("XSRF-TOKEN", { watch: true });
+	const csrfToken = useState<string | null | undefined>("sanctum.csrfToken");
 	const authenticated = useState<boolean>("sanctum.authenticated", () => false);
 
 	const sanctumFetch = ofetch.create({
@@ -22,6 +22,21 @@ export const useAuth = () => {
 			Origin: useRequestHeaders(["host"]).host,
 			Accept: "application/json",
 		} as HeadersInit,
+		onResponse: (response) => {
+			if (process.server) {
+				const split = splitCookiesString(
+					response.response.headers.get("set-cookie") ?? "",
+				);
+				const cookies = parse(split);
+				csrfToken.value = cookies.find(
+					(cookie) => cookie.name === "XSRF-TOKEN",
+				)?.value;
+			}
+
+			if (process.client) {
+				csrfToken.value = useCookie("XSRF-TOKEN").value;
+			}
+		},
 	});
 
 	/**
@@ -117,7 +132,6 @@ export const useAuth = () => {
 	const logout = async (redirectTo?: string): Promise<boolean> => {
 		try {
 			// Attempt to logout the user.
-			console.log("logout", "csrf token");
 			await sanctumFetch(config.logout.endpoint, {
 				method: "POST",
 				headers: {

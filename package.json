@@ -22,7 +22,7 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "nuxi prepare playgrounds/nuxt && nuxt-module-build",
+		"build": "nuxt-module-build",
 		"dev": "run-p --print-label dev:nuxt dev:laravel",
 		"dev:nuxt": "nuxi dev playgrounds/nuxt",
 		"dev:build": "nuxi build playgrounds/nuxt",
@@ -34,7 +34,9 @@
 	},
 	"dependencies": {
 		"@nuxt/kit": "^3.7.3",
-		"defu": "^6.1.2"
+		"defu": "^6.1.2",
+		"ofetch": "^1.3.3",
+		"set-cookie-parser-es": "^1.0.5"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.2.2",
