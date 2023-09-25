@@ -22,7 +22,7 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "nuxt-module-build",
+		"build": "nuxi prepare playgrounds/nuxt && nuxt-module-build",
 		"dev": "run-p --print-label dev:nuxt dev:laravel",
 		"dev:nuxt": "nuxi dev playgrounds/nuxt",
 		"dev:build": "nuxi build playgrounds/nuxt",
