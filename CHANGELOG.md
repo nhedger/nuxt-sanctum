@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.3 (2023-09-25)
+
+**Full Changelog**: https://github.com/nhedger/nuxt-sanctum/compare/v0.0.2...v0.0.3
+
 ## 0.0.2 (2023-09-25)
 
 **Full Changelog**: https://github.com/nhedger/nuxt-sanctum/compare/v0.0.1...v0.0.2
