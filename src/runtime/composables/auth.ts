@@ -26,9 +26,6 @@ export const useAuth = () => {
 			Origin: useRequestHeaders(["host"]).host,
 			Accept: "application/json",
 		} as HeadersInit,
-		onResponseError: (error) => {
-			console.log(error.response._data);
-		},
 	});
 
 	/**
@@ -51,7 +48,7 @@ export const useAuth = () => {
 	 */
 	const check = async (): Promise<boolean> => {
 		try {
-			const x = await sanctumFetch.raw(config.check.endpoint, {
+			await sanctumFetch.raw(config.check.endpoint, {
 				headers: {
 					...useRequestHeaders(["cookie"]),
 				} as HeadersInit,
