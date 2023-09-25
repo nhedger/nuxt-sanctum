@@ -1,0 +1,17 @@
+# Dependencies
+node_modules
+
+# Generated dirs
+dist
+
+# Nuxt
+.nuxt
+.output
+
+# VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
