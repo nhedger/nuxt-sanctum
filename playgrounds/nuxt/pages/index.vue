@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { definePageMeta, useAuth } from '#imports';
-const { logout, check } = useAuth();
+import { definePageMeta, useSanctum } from '#imports';
+const { logout, check } = useSanctum();
 definePageMeta({ middleware: 'auth' });
 const signOut = () => logout();
 </script>

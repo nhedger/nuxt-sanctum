@@ -1,5 +1,5 @@
 import { defineNuxtRouteMiddleware, useNuxtApp } from "#imports";
-import { useAuth } from "../composables/auth";
+import { useSanctum } from "../composables/sanctum";
 
 /**
  * Check Middleware
@@ -8,7 +8,7 @@ import { useAuth } from "../composables/auth";
  * by performing a request to the user endpoint.
  */
 export const check = defineNuxtRouteMiddleware(async (to, from) => {
-	const { authenticated, check: authCheck } = useAuth();
+	const { authenticated, check: authCheck } = useSanctum();
 
 	// If the user is already considered authenticated, we don't need to
 	// run the check. If by chance the user is not actually authenticated,

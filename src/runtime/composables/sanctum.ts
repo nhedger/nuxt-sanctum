@@ -8,7 +8,7 @@ import {
 import { ofetch } from "ofetch";
 import { parse, splitCookiesString } from "set-cookie-parser-es";
 
-export const useAuth = () => {
+export const useSanctum = () => {
 	const config = useRuntimeConfig().public.sanctum;
 	const csrfToken = useState<string | null | undefined>("sanctum.csrfToken");
 	const authenticated = useState<boolean>("sanctum.authenticated", () => false);

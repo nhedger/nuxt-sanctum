@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { definePageMeta, useAuth } from '#imports';
+import { definePageMeta, useSanctum } from '#imports';
 
-const { login, check } = useAuth();
+const { login, check } = useSanctum();
 definePageMeta({ middleware: ['guest'] });
 
 const signIn = () => login({

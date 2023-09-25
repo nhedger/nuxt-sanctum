@@ -31,9 +31,9 @@ export default defineNuxtModule<Options>({
 
 		// Register auth composable
 		addImports({
-			name: "useAuth",
-			as: "useAuth",
-			from: resolve("runtime/composables/auth"),
+			name: "useSanctum",
+			as: "useSanctum",
+			from: resolve("runtime/composables/sanctum"),
 		});
 	},
 });
