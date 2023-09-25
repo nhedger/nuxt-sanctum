@@ -5,16 +5,12 @@ import {
 	useRouter,
 	useRuntimeConfig,
 	useState,
-	watch,
 } from "#imports";
 import { ofetch } from "ofetch";
 
 export const useAuth = () => {
 	const config = useRuntimeConfig().public.sanctum;
-	const csrfToken = useState<string | null | undefined>(
-		"sanctum.csrfToken",
-		() => useCookie("XSRF-TOKEN").value,
-	);
+	const csrfToken = useCookie("XSRF-TOKEN", { watch: true });
 	const authenticated = useState<boolean>("sanctum.authenticated", () => false);
 
 	const sanctumFetch = ofetch.create({
@@ -51,6 +47,7 @@ export const useAuth = () => {
 			await sanctumFetch.raw(config.check.endpoint, {
 				headers: {
 					...useRequestHeaders(["cookie"]),
+					"X-XSRF-TOKEN": csrfToken.value,
 				} as HeadersInit,
 			});
 			authenticated.value = true;
