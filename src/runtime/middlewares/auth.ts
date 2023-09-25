@@ -1,5 +1,5 @@
 import { defineNuxtRouteMiddleware, useRuntimeConfig } from "#imports";
-import { useAuth } from "../composables/auth";
+import { useSanctum } from "../composables/sanctum";
 
 /**
  * Auth Middleware
@@ -10,7 +10,7 @@ export const auth = defineNuxtRouteMiddleware(async (to, from) => {
 	const config = useRuntimeConfig().public.sanctum;
 
 	// If the user is not authenticated, redirect to the unauthenticated page.
-	if (!useAuth().authenticated.value) {
+	if (!useSanctum().authenticated.value) {
 		return config.middlewares.auth.redirectsTo;
 	}
 });

@@ -1,5 +1,5 @@
 import { defineNuxtRouteMiddleware, useRuntimeConfig } from "#imports";
-import { useAuth } from "../composables/auth";
+import { useSanctum } from "../composables/sanctum";
 
 /**
  * Guest Middleware
@@ -8,7 +8,7 @@ import { useAuth } from "../composables/auth";
  * to guests. Authenticated users will be redirected to the home page.
  */
 export const guest = defineNuxtRouteMiddleware(async (to, from) => {
-	const { authenticated } = useAuth();
+	const { authenticated } = useSanctum();
 
 	const config = useRuntimeConfig().public.sanctum;
 
