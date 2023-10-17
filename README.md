@@ -10,9 +10,10 @@ The `nuxt-sanctum` package brings Laravel Sanctum support to Nuxt.
 ## Features
 
 <!-- Highlight some of the features your module provide here -->
-- 🚀 &nbsp;[**Universal rendering**](https://nuxt.com/docs/guide/concepts/rendering#universal-rendering)
-- 🍪 &nbsp;Cookie-based authentication
-- ⚙️ &nbsp;Sensible defaults, but configurable
+
+-   🚀 &nbsp;[**Universal rendering**](https://nuxt.com/docs/guide/concepts/rendering#universal-rendering)
+-   🍪 &nbsp;Cookie-based authentication
+-   ⚙️ &nbsp;Sensible defaults, but configurable
 
 ## Quick Setup
 
@@ -36,22 +37,97 @@ npm install @hedger/nuxt-sanctum
 
 ```js
 export default defineNuxtConfig({
-  modules: [
-    '@hedger/nuxt-sanctum'
-  ]
-})
+	modules: ["@hedger/nuxt-sanctum"],
+});
 ```
 
+## Usage
+
+The following examples should get your started. To customize the behavior, have a look a the [options](src/options.ts).
+
+### Signing In
+
+To sign a user in, use the `login` method exposed by the `useSanctum` composable.
+
+```ts
+const { login } = useSanctum();
+
+await login({
+	email: "john.snow@example.com",
+	password: "winteriscoming",
+});
+```
+
+### Signing Out
+
+To sign a user out, use the `logout` method exposed by the `useSanctum` composable.
+
+```ts
+const { logout } = useSanctum();
+
+await logout();
+```
+
+#### Redirecting after signing out
+
+By default, the user will be redirected to the URL specified in the `logout.redirectsTo` option. You may override this behavior by passing an alternative URL to the `logout` method. Additionally, you may pass `false` to the `logout` method to prevent redirection altogether.
+
+```ts
+// Override the default redirect
+await logout("/somewhere-else");
+
+// Prevent redirection
+await logout(false);
+```
+
+### Checking if a user is signed in
+
+To check if a user is signed in, use the `authenticated` variable exposed by the `useSanctum` composable.
+
+```ts
+const { authenticated } = useSanctum();
+
+if (authenticated.value) {
+	// The user is signed in
+}
+```
+
+### Restricting access to routes
+
+This package provides the `auth` and `guest` middlewares to restrict access to routes.
+
+#### Restricting to authenticated users
+
+Use the `auth` middleware to ensure that only authenticated users can access a route. Unauthenticated users will be redirected to the URL specified in the `middlewares.auth.redirectsTo` option.
+
+```html
+<script setup lang="ts">
+	definePageMeta({
+		middleware: "auth",
+	});
+</script>
+```
+
+#### Restricting to guest users
+
+Use the `guest` middleware to ensure that only guest users can access a route.
+Authenticated users will be redirected to the URL specified in the `middlewares.guest.redirectsTo` option.
+
+```html
+<script setup lang="ts">
+	definePageMeta({
+		middleware: "guest",
+	});
+</script>
+```
 
 <!-- Badges -->
+
 [npm-version-src]: https://img.shields.io/npm/v/@hedger/nuxt-sanctum/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
 [npm-version-href]: https://npmjs.com/package/@hedger/nuxt-sanctum
-
 [npm-downloads-src]: https://img.shields.io/npm/dm/@hedger/nuxt-sanctum.svg?style=flat&colorA=18181B&colorB=28CF8D
 [npm-downloads-href]: https://npmjs.com/package/@hedger/nuxt-sanctum
-
 [license-src]: https://img.shields.io/npm/l/@hedger/nuxt-sanctum.svg?style=flat&colorA=18181B&colorB=28CF8D
 [license-href]: https://npmjs.com/package/@hedger/nuxt-sanctum
-
 [nuxt-src]: https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js
 [nuxt-href]: https://nuxt.com
