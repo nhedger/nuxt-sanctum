@@ -121,6 +121,25 @@ Authenticated users will be redirected to the URL specified in the `middlewares.
 </script>
 ```
 
+## Troubleshooting
+
+### Using HTTPS in development
+
+When your Laravel API is served over HTTPS in a development environment, SSL errors may occur due to Node.js rejecting self-signed certificates. To fix this, set `NODE_TLS_REJECT_UNAUTHORIZED` to `0` when starting your development server.
+
+```bash
+{
+	"scripts": {
+		"dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 nuxt dev"
+	}
+}
+```
+
+> [!NOTE]
+> Bun does not seem affected by this issue.
+
+
+
 <!-- Badges -->
 
 [npm-version-src]: https://img.shields.io/npm/v/@hedger/nuxt-sanctum/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
@@ -131,3 +150,4 @@ Authenticated users will be redirected to the URL specified in the `middlewares.
 [license-href]: https://npmjs.com/package/@hedger/nuxt-sanctum
 [nuxt-src]: https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js
 [nuxt-href]: https://nuxt.com
+
