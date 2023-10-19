@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.2.2",
-    "@nuxt/devtools": "latest",
+    "@nuxt/devtools": "^1.0.0",
     "@nuxt/eslint-config": "^0.2.0",
     "@nuxt/module-builder": "^0.5.1",
     "@nuxt/schema": "^3.7.3",
