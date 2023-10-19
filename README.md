@@ -10,23 +10,26 @@ The `nuxt-sanctum` package brings Laravel Sanctum support to Nuxt.
 ## Features
 
 <!-- Highlight some of the features your module provide here -->
-- 🚀 &nbsp;**SPA** and **SSR** support.
-- 🍪 &nbsp;**Cookie**-based authentication.
-- 🌲 &nbsp;Sensible defaults, but configurable.
+- 🚀 &nbsp;[**Universal rendering**](https://nuxt.com/docs/guide/concepts/rendering#universal-rendering)
+- 🍪 &nbsp;Cookie-based authentication
+- ⚙️ &nbsp;Sensible defaults, but configurable
 
 ## Quick Setup
 
-1. Add `@nhedger/nuxt-sanctum` dependency to your project
+1. Add `@hedger/nuxt-sanctum` dependency to your project
 
 ```bash
+# Using bun
+bun add @hedger/nuxt-sanctum
+
 # Using pnpm
-pnpm add -D @hedger/nuxt-sanctum
+pnpm add @hedger/nuxt-sanctum
 
 # Using yarn
-yarn add --dev @hedger/nuxt-sanctum
+yarn add @hedger/nuxt-sanctum
 
 # Using npm
-npm install --save-dev @hedger/nuxt-sanctum
+npm install @hedger/nuxt-sanctum
 ```
 
 2. Add `@hedger/nuxt-sanctum` to the `modules` section of `nuxt.config.ts`
