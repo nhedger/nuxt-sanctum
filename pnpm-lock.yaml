@@ -43,6 +43,9 @@ devDependencies:
   changelogen:
     specifier: ^0.5.5
     version: 0.5.5
+  git-cliff:
+    specifier: ^1.3.1
+    version: 1.3.1
   npm-run-all:
     specifier: ^4.1.5
     version: 4.1.5
@@ -4104,6 +4107,66 @@ packages:
       tar: 6.2.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /git-cliff-darwin-arm64@1.3.1:
+    resolution: {integrity: sha512-Ms8xACh/8GFQ2t7/2MJk9yJof/Ir5Ls9d+LuEMut0D3toNjIaGSmHq0WC5hBPq2PJ1/FK8U53sgkOIf2x8Q4aA==}
+    cpu: [arm64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /git-cliff-darwin-x64@1.3.1:
+    resolution: {integrity: sha512-lnotUCDnCQmEyadf2t9NASeTT6/3Gaz5Hf3+W/uS1fpnPJKWWY4n9TNfCKhZyJhUOq43/vrcOScznuLug+YPcw==}
+    cpu: [x64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /git-cliff-linux-arm64@1.3.1:
+    resolution: {integrity: sha512-ydx5CSjKlELFEH7NAJf2aciBJg0hzIoM3308E8sGSBltXPeSHOuMAxIJP4jMkJ9ONsY90AHmunldCUSPv1gwTA==}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /git-cliff-linux-x64@1.3.1:
+    resolution: {integrity: sha512-CJXRH+37PDQMQWuGwXPDacZmbQQ6xQji6h7HXifxCkanOsKqsBocYI+n35woa+Pgk3QUcf2pTGpZuFhrKlwSoA==}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /git-cliff-windows-arm64@1.3.1:
+    resolution: {integrity: sha512-uKP7syv0SeJjJq58vSqI4fXOnlbfXpi1VLTrLLMJljnk+i/V2AfDJaZaRgYOxtuxMcRXq5/SD8v47vvbugFRvw==}
+    cpu: [arm64]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /git-cliff-windows-x64@1.3.1:
+    resolution: {integrity: sha512-TU4/PBvo6Qb9Lz2/5pHPamkJuymHzn7ypLQCfg5AT3V27VVnphJMAR7iScBxDLvtj4mey48uFjCaWX+7ub+Z9w==}
+    cpu: [x64]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /git-cliff@1.3.1:
+    resolution: {integrity: sha512-w0d35QMWuN4HSutGZINQ1rFD4zmWmWIzB40pXHwgb/fBSlXNvjGsFAoz/vxhsKUrlRSc2VZX/pdTC81hx+JzPA==}
+    hasBin: true
+    optionalDependencies:
+      git-cliff-darwin-arm64: 1.3.1
+      git-cliff-darwin-x64: 1.3.1
+      git-cliff-linux-arm64: 1.3.1
+      git-cliff-linux-x64: 1.3.1
+      git-cliff-windows-arm64: 1.3.1
+      git-cliff-windows-x64: 1.3.1
     dev: true
 
   /git-config-path@2.0.0:
