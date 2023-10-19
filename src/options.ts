@@ -5,36 +5,36 @@ export interface Options {
 	 * @example "http://localhost:8000"
 	 * @default "http://localhost:8000"
 	 */
-	url: string;
+	url?: string;
 
-	csrf: {
+	csrf?: {
 		/**
 		 * URL of the CSRF endpoint on the server.
 		 *
 		 * @example "/sanctum/csrf-cookie"
 		 * @default "/sanctum/csrf-cookie"
 		 */
-		endpoint: string;
+		endpoint?: string;
 	};
 
-	check: {
+	check?: {
 		/**
 		 * URL of the endpoint to check if the user is authenticated.
 		 *
 		 * @example "/api/user"
 		 * @default "/api/user"
 		 */
-		endpoint: string;
+		endpoint?: string;
 	};
 
-	login: {
+	login?: {
 		/**
 		 * URL of the login endpoint on the server.
 		 *
 		 * @example "/login"
 		 * @default "/login"
 		 */
-		endpoint: string;
+		endpoint?: string;
 
 		/**
 		 * The URL to redirect to after the user has logged in.
@@ -42,17 +42,17 @@ export interface Options {
 		 * @example "/"
 		 * @default "/"
 		 */
-		redirectsTo: string;
+		redirectsTo?: string;
 	};
 
-	logout: {
+	logout?: {
 		/**
 		 * URL of the logout endpoint on the server.
 		 *
 		 * @example "/logout"
 		 * @default "/logout"
 		 */
-		endpoint: string;
+		endpoint?: string;
 
 		/**
 		 * The URL to redirect to after the user has logged out.
@@ -60,14 +60,14 @@ export interface Options {
 		 * @example "/login"
 		 * @default "/login"
 		 */
-		redirectsTo: string;
+		redirectsTo?: string;
 	};
 
-	middlewares: {
+	middlewares?: {
 		/**
 		 * Check middleware options.
 		 */
-		check: {
+		check?: {
 			/**
 			 * The name of the middleware.
 			 *
@@ -75,13 +75,13 @@ export interface Options {
 			 *
 			 * @default "sanctum.check"
 			 */
-			name: string;
+			name?: string;
 		};
 
 		/**
 		 * Auth middleware options
 		 */
-		auth: {
+		auth?: {
 			/**
 			 * The name of the middleware.
 			 *
@@ -89,7 +89,7 @@ export interface Options {
 			 *
 			 * @default "auth"
 			 */
-			name: string;
+			name?: string;
 
 			/**
 			 * The URL to redirect to when an unauthenticated user tries to access
@@ -98,13 +98,13 @@ export interface Options {
 			 * @default "/login"
 			 * @example "/login"
 			 */
-			redirectsTo: string;
+			redirectsTo?: string;
 		};
 
 		/**
 		 * Guest middleware options.
 		 */
-		guest: {
+		guest?: {
 			/**
 			 * The name of the middleware.
 			 *
@@ -112,7 +112,7 @@ export interface Options {
 			 *
 			 * @default "guest"
 			 */
-			name: string;
+			name?: string;
 
 			/**
 			 * The URL to redirect to when an authenticated user tries to access
@@ -121,7 +121,7 @@ export interface Options {
 			 * @default "/"
 			 * @example "/"
 			 */
-			redirectsTo: string;
+			redirectsTo?: string;
 		};
 	};
 }
