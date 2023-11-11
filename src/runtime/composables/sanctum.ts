@@ -89,7 +89,10 @@ export const useSanctum = <TUser extends Record<string, unknown>>() => {
 	 * @param data The credentials to use to sign the user in.
 	 * @returns Whether the user was successfully signed in.
 	 */
-	const login = async (data: Record<string, string>): Promise<boolean> => {
+	const login = async (
+		data: Record<string, string>,
+		redirectTo?: string,
+	): Promise<boolean> => {
 		// Refresh the CSRF token before attempting to sign in.
 		await refreshCsrfToken();
 
@@ -107,8 +110,8 @@ export const useSanctum = <TUser extends Record<string, unknown>>() => {
 			authenticated.value = true;
 
 			// Redirect if a redirect is provided.
-			if (config.login.redirectsTo) {
-				useRouter().push(config.login.redirectsTo);
+			if (redirectTo || config.login.redirectsTo) {
+				useRouter().push(redirectTo ?? config.login.redirectsTo);
 			}
 
 			return true;
