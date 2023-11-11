@@ -60,15 +60,16 @@ export const useSanctum = <TUser extends Record<string, unknown>>() => {
 	 */
 	const check = async (): Promise<boolean> => {
 		try {
-			const { data } = await sanctumFetch(config.check.endpoint, {
+			const response = await sanctumFetch(config.check.endpoint, {
 				headers: {
 					...useRequestHeaders(["cookie"]),
 					"X-XSRF-TOKEN": csrfToken.value,
 				} as HeadersInit,
 			});
-			user.value = data;
+			user.value = response;
 			authenticated.value = true;
 		} catch (error) {
+			console.log(error);
 			authenticated.value = false;
 		}
 		return authenticated.value;
@@ -157,6 +158,7 @@ export const useSanctum = <TUser extends Record<string, unknown>>() => {
 
 	return {
 		check,
+		user,
 		refreshUser: check,
 		login,
 		logout,

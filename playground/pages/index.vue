@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { definePageMeta, useSanctum } from '#imports';
-const { logout, check } = useSanctum();
+const { logout, check, user } = useSanctum();
 definePageMeta({ middleware: 'auth' });
 const signOut = () => logout();
 </script>
@@ -11,5 +11,6 @@ const signOut = () => logout();
         <button @click="signOut">logout</button>
         <RouterLink to="/account">account</RouterLink>
         <button @click="check">Check</button>
+        <pre>{{ user }}</pre>
     </div>
 </template>
