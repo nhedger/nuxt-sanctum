@@ -58,6 +58,24 @@ await login({
 });
 ```
 
+#### Redirecting after signing in
+
+By default, the user will be redirected to the URL specified in the `login.redirectsTo` option. You may override this behavior by passing an alternative URL to the `login` method. Additionally, you may pass `false` to the `login` method to prevent redirection altogether.
+
+```ts
+// Override the default redirect
+await login({
+	email: "john.snow@example.com",
+	password: "winteriscoming",
+},"/somewhere-else");
+
+// Prevent redirection
+await login({
+	email: "john.snow@example.com",
+	password: "winteriscoming",
+}, false);
+```
+
 ### Signing Out
 
 To sign a user out, use the `logout` method exposed by the `useSanctum` composable.
