@@ -92,6 +92,30 @@ if (authenticated.value) {
 }
 ```
 
+### Retrieving the user's details
+
+To retrieve the details about the currently signed in user, use the `user` variable exposed by the `useSanctum` composable.
+
+```ts
+const { user } = useSanctum();
+
+console.log(user.value.name) // John Snow
+```
+
+#### Type safety
+
+You may specify the type of the user object by passing it as a generic type argument to the `useSanctum` composable.
+
+```ts
+interface User {
+	id: number;
+	name: string;
+	email: string;
+}
+
+const { user } = useSanctum<User>();
+```
+
 ### Restricting access to routes
 
 This package provides the `auth` and `guest` middlewares to restrict access to routes.
