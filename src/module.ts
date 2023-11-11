@@ -35,5 +35,12 @@ export default defineNuxtModule<Options>({
 			as: "useSanctum",
 			from: resolve("runtime/composables/sanctum"),
 		});
+
+		// Register fetch composable
+		addImports({
+			name: "useSanctumFetch",
+			as: "useSanctumFetch",
+			from: resolve("runtime/composables/fetch"),
+		});
 	},
 });
