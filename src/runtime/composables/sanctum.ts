@@ -69,7 +69,6 @@ export const useSanctum = <TUser extends Record<string, unknown>>() => {
 			user.value = response;
 			authenticated.value = true;
 		} catch (error) {
-			console.log(error);
 			authenticated.value = false;
 		}
 		return authenticated.value;
