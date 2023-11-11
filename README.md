@@ -99,7 +99,7 @@ To retrieve the details about the currently signed in user, use the `user` varia
 ```ts
 const { user } = useSanctum();
 
-console.log(user.value.name) // John Snow
+console.log(user.value?.name) // John Snow
 ```
 
 #### Type safety
