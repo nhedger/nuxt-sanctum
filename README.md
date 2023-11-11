@@ -116,6 +116,14 @@ interface User {
 const { user } = useSanctum<User>();
 ```
 
+### Making API requests
+
+To make API requests, you may use the `useSanctumFetch` composable. This composable is a wrapper around the `useFetch` composable provided by the Nuxt that automatically handles the CSRF token and passes down the user's session cookie.
+
+```ts
+const { data } = useSanctumFetch("/api/user");
+```
+
 ### Restricting access to routes
 
 This package provides the `auth` and `guest` middlewares to restrict access to routes.
@@ -161,6 +169,17 @@ When your Laravel API is served over HTTPS in a development environment, SSL err
 
 > [!NOTE]
 > Bun does not seem affected by this issue.
+
+### DNS resolution
+
+If you run your Laravel API with `php artisan serve`, be aware that by default, it will only bind
+to the IPv4 interface. This may cause DNS resolution issues when using the `useSanctumFetch` composable, because it may try to resolve the `localhost` hostname to an IPv6 address.
+
+There are a few ways to work around this:
+-  Bind to the IPv6 interface instead by running `php artisan serve --host ::1`
+-  Edit your `/etc/hosts` file to remove the IPv6 entry for `localhost`
+
+
 
 
 
