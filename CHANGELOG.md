@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.3] - 2023-11-11
+
+### Features
+
+- Add after-login redirect override (#12)
+
 ## [0.1.2] - 2023-11-11
 
 ### Bug Fixes
