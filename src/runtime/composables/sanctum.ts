@@ -8,10 +8,11 @@ import {
 import { ofetch } from "ofetch";
 import { parse, splitCookiesString } from "set-cookie-parser-es";
 
-export const useSanctum = () => {
+export const useSanctum = <TUser extends Record<string, unknown>>() => {
 	const config = useRuntimeConfig().public.sanctum;
 	const csrfToken = useState<string | null | undefined>("sanctum.csrfToken");
 	const authenticated = useState<boolean>("sanctum.authenticated", () => false);
+	const user = useState<TUser | null>("sanctum.user", () => null);
 
 	const sanctumFetch = ofetch.create({
 		baseURL: config.url,
@@ -59,12 +60,13 @@ export const useSanctum = () => {
 	 */
 	const check = async (): Promise<boolean> => {
 		try {
-			await sanctumFetch.raw(config.check.endpoint, {
+			const { data } = await sanctumFetch(config.check.endpoint, {
 				headers: {
 					...useRequestHeaders(["cookie"]),
 					"X-XSRF-TOKEN": csrfToken.value,
 				} as HeadersInit,
 			});
+			user.value = data;
 			authenticated.value = true;
 		} catch (error) {
 			authenticated.value = false;
@@ -155,6 +157,7 @@ export const useSanctum = () => {
 
 	return {
 		check,
+		refreshUser: check,
 		login,
 		logout,
 		refreshCsrfToken,
