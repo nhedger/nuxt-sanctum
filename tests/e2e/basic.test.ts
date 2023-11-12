@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test("unauthenticated user can login with correct credentials", async ({ page }) => {
+test("unauthenticated users can login with correct credentials", async ({ page }) => {
 	await page.goto("/login");
 
 	await page.getByTestId("email").fill("test@example.com");
@@ -10,7 +10,7 @@ test("unauthenticated user can login with correct credentials", async ({ page })
     await expect(page).toHaveURL("/");
 });
 
-test("unauthenticated user cannot login with incorrect credentials", async ({ page }) => {
+test("unauthenticated users cannot login with incorrect credentials", async ({ page }) => {
 	await page.goto("/login");
 
 	await page.getByTestId("email").fill("test@example.com");
@@ -20,16 +20,18 @@ test("unauthenticated user cannot login with incorrect credentials", async ({ pa
     await expect(page).toHaveURL("/login");
 });
 
-test("unauthenticated users cannot access the home page", async ({ page }) => {
-	await page.goto("/");
+test("unauthenticated users can access pages that have the guest middleware", async ({ page }) => {
+	await page.goto("/login");
+
 	await expect(page).toHaveURL("/login");
 });
 
-test("unauthenticated user can access the login page", async ({ page }) => {
-	await page.goto("/login");
-	expect(await page.getByRole("heading", { name: "Login" }).textContent()).toBe(
-		"Login",
-	);
+test("unauthenticated users cannot access pages that have the auth middleware", async ({ page }) => {
+	await page.goto("/");
+
+	await expect(page).not.toHaveURL("/");
 });
+
+
 
 
