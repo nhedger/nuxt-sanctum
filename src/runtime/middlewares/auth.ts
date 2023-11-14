@@ -6,11 +6,16 @@ import { useSanctum } from "../composables/sanctum";
  *
  * The auth middleware is used to protect routes that require authentication.
  */
-export const auth = defineNuxtRouteMiddleware(async (to, from) => {
+export const auth = defineNuxtRouteMiddleware(async () => {
+	const { authenticated, check } = useSanctum();
 	const config = useRuntimeConfig().public.sanctum;
 
-	// If the user is not authenticated, redirect to the unauthenticated page.
-	if (!useSanctum().authenticated.value) {
-		return config.middlewares.auth.redirectsTo;
+	// Because we know the last authenticated state, we can use it to determine
+	// if we should make a request to the server to check if the user is still
+	// authenticated.
+	if (authenticated.value === true || (await check())) {
+		return;
 	}
+
+	return config.middlewares.auth.redirectsTo;
 });
