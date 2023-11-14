@@ -13,7 +13,7 @@ export const auth = defineNuxtRouteMiddleware(async () => {
 	// Because we know the last authenticated state, we can use it to determine
 	// if we should make a request to the server to check if the user is still
 	// authenticated.
-	if (authenticated.value || (await check())) {
+	if (authenticated.value === true || (await check())) {
 		return;
 	}
 

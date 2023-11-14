@@ -11,7 +11,10 @@ import { parse, splitCookiesString } from "set-cookie-parser-es";
 export const useSanctum = <TUser extends Record<string, unknown>>() => {
 	const config = useRuntimeConfig().public.sanctum;
 	const csrfToken = useState<string | null | undefined>("sanctum.csrfToken");
-	const authenticated = useState<boolean>("sanctum.authenticated", () => false);
+	const authenticated = useState<boolean | null>(
+		"sanctum.authenticated",
+		() => null,
+	);
 	const user = useState<TUser | null>("sanctum.user", () => null);
 
 	const sanctumFetch = ofetch.create({
@@ -106,8 +109,8 @@ export const useSanctum = <TUser extends Record<string, unknown>>() => {
 				} as HeadersInit,
 			});
 
-			// Set the user as authenticated.
-			authenticated.value = true;
+			// Check if the user is authenticated.
+			await check();
 
 			// Redirect if a redirect is provided.
 			if (redirectTo || config.login.redirectsTo) {
