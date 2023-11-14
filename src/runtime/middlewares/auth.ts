@@ -9,7 +9,7 @@ import { useSanctum } from "../composables/sanctum";
 export const auth = defineNuxtRouteMiddleware(async () => {
 	const { authenticated, check } = useSanctum();
 	const config = useRuntimeConfig().public.sanctum;
-	
+
 	// Because we know the last authenticated state, we can use it to determine
 	// if we should make a request to the server to check if the user is still
 	// authenticated.
