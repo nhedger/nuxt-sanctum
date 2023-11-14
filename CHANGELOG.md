@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.4] - 2023-11-14
+
+### Bug Fixes
+
+- Check auth (#15)
+
 ## [0.1.3] - 2023-11-11
 
 ### Features
