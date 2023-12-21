@@ -1,3 +1,5 @@
+import { ofetch } from "ofetch";
+import { parse, splitCookiesString } from "set-cookie-parser-es";
 import {
 	useCookie,
 	useRequestHeaders,
@@ -5,8 +7,6 @@ import {
 	useRuntimeConfig,
 	useState,
 } from "#imports";
-import { ofetch } from "ofetch";
-import { parse, splitCookiesString } from "set-cookie-parser-es";
 
 export const useSanctum = <TUser extends Record<string, unknown>>() => {
 	const config = useRuntimeConfig().public.sanctum;
