@@ -1,5 +1,3 @@
-import { defu } from "defu";
-import { parse, splitCookiesString } from "set-cookie-parser-es";
 import type { UseFetchOptions } from "#app";
 import {
 	navigateTo,
@@ -9,6 +7,8 @@ import {
 	useRuntimeConfig,
 	useSanctum,
 } from "#imports";
+import { defu } from "defu";
+import { parse, splitCookiesString } from "set-cookie-parser-es";
 
 export const useSanctumFetch = <T>(
 	url: string | (() => string),
