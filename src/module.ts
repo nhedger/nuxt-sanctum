@@ -5,7 +5,7 @@ import {
 	defineNuxtModule,
 } from "@nuxt/kit";
 import { defu } from "defu";
-import { Options, defaultOptions } from "./options";
+import { type Options, defaultOptions } from "./options";
 
 export default defineNuxtModule<Options>({
 	meta: {
