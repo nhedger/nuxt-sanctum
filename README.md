@@ -43,7 +43,7 @@ export default defineNuxtConfig({
 
 ## Usage
 
-The following examples should get your started. To customize the behavior, have a look a the [options](src/options.ts).
+The following examples should get your started. To customize the behavior, have a look at the [options](src/options.ts).
 
 ### Signing In
 
