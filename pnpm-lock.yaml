@@ -20,7 +20,7 @@ dependencies:
 
 devDependencies:
   '@biomejs/biome':
-    specifier: ^1.5.2
+    specifier: 1.5.2
     version: 1.5.2
   '@nuxt/devtools':
     specifier: ^1.0.8
