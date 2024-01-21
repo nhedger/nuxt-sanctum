@@ -12,10 +12,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set up
-        uses: ./.github/actions/setup
-      - name: Run Rome
-        run: pnpm exec biome ci .
+      - name: Set up Biome
+        uses: biomejs/setup-biome@v2
+      - name: Run Biome
+        run: biome ci .
 
   build:
     name: Build
