@@ -7,6 +7,12 @@ import {
 import { defu } from "defu";
 import { type Options, defaultOptions } from "./options";
 
+declare module "nuxt/schema" {
+	interface PublicRuntimeConfig {
+		sanctum: Options;
+	}
+}
+
 export default defineNuxtModule<Options>({
 	meta: {
 		name: "@hedger/nuxt-sanctum",
