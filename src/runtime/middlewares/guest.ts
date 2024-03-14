@@ -8,12 +8,17 @@ import { useSanctum } from "../composables/sanctum";
  * to guests. Authenticated users will be redirected to the home page.
  */
 export const guest = defineNuxtRouteMiddleware(async (to, from) => {
-	const { authenticated } = useSanctum();
+  const { authenticated, check } = useSanctum();
 
-	const config = useRuntimeConfig().public.sanctum;
+  const config = useRuntimeConfig().public.sanctum;
 
-	// If the user is authenticated, redirect to the authenticated page.
-	if (authenticated.value) {
-		return config.middlewares.guest.redirectsTo;
-	}
+  let checkAuth = false;
+  if (config.check.always) {
+    checkAuth = await check();
+  }
+
+  // If the user is authenticated, redirect to the authenticated page.
+  if (authenticated.value || checkAuth) {
+    return config.middlewares.guest.redirectsTo;
+  }
 });
